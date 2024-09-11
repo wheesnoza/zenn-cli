@@ -4,18 +4,14 @@ import (
 	"encoding/json"
     "fmt"
     "net/http"
+    "zenn-cli/internal/entities"
 )
 
-type Article struct {
-    Title string `json:"title"`
-    URL   string `json:"path"`
-}
-
 type Response struct {
-	Articles []Article `json:"articles"`
+	Articles []entities.Article `json:"articles"`
 }
 
-func GetArticles(username string) ([]Article, error) {
+func GetArticles(username string) ([]entities.Article, error) {
 	url := fmt.Sprintf("https://zenn.dev/api/articles?username=%s", username)
 
     resp, err := http.Get(url)
